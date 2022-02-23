@@ -1,0 +1,47 @@
+{%extends 'base.html'%}
+{%block body_block%}
+
+<div class="row">
+        <div class="col-4"></div>
+        <div class="col-4">
+            {%if book%}
+            <div class="alert alert-primary" role="alert">
+                {{book.book_name}} has been deleted
+                <button class="btn-close" data-bs-dismiss="alert"></button>
+
+            </div>
+            {%endif%}
+        </div>
+        <div class="col-4"></div>
+    </div>
+
+    <div class="row">
+        <div class="col-1"></div>
+        <div class="col-10">
+            <table class="table">
+                <tr>
+                    <th>Book Name</th>
+                    <th>Author</th>
+                    <th>Price</th>
+                    <th>Copies</th>
+                    <th>Published Date</th>
+                </tr>
+                {%for book in books%}
+                <tr>
+                    <td>{{book.book_name}}</td>
+                    <td>{{book.author}}</td>
+                    <td>{{book.price}}</td>
+                    <td>{{book.copies}}</td>
+                    <td>{{book.published_date}}</td>
+                    <td>
+                        <a href="{%url 'bookdetail' book.id%}" class="btn btn-outline-primary">View</a>
+                        <a href="{%url 'bookedit' book.id%}" class="btn btn-outline-warning">Edit</a>
+                        <a href="{%url 'bookdelete' book.id%}" class="btn btn-outline-danger">Delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
+            </table>
+        </div>
+        <div class="col-1"></div>
+    </div>
+{%endblock%}
